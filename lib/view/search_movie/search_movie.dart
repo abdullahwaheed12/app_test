@@ -1,3 +1,4 @@
+import 'package:App_Test/controller/general_provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -213,20 +214,25 @@ class SearchMovieScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const DynamicHorizontalSpace(20),
-                                const Column(
+                                Column(
                                   children: [
-                                    Text(
-                                      'Timless',
-                                      style: TextStyle(
-                                        color: Color(0xFF202C43),
-                                        fontSize: 16,
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w500,
+                                    SizedBox(
+                                      width: 160,
+                                      child: Text(
+                                        movie.title,
+                                        style: const TextStyle(
+                                          color: Color(0xFF202C43),
+                                          fontSize: 16,
+                                          fontFamily: 'Poppins',
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
                                     Text(
-                                      'Fantasy',
-                                      style: TextStyle(
+                                      Provider.of<GeneralProvider>(context,
+                                              listen: false)
+                                          .getGenreName(movie.genre_ids[0]),
+                                      style: const TextStyle(
                                         color: Color(0xFFDBDBDF),
                                         fontSize: 12,
                                         fontFamily: 'Poppins',
