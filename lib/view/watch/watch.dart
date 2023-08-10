@@ -7,6 +7,7 @@ import 'package:App_Test/view/movie_detail/movie_detail_screen.dart';
 import 'package:App_Test/view/search_movie/search_movie.dart';
 import 'package:App_Test/widgets/app_widgets/scaffold_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 class Watch extends StatelessWidget {
   const Watch({super.key});
@@ -55,8 +56,67 @@ class Watch extends StatelessWidget {
             child:
                 Consumer<GeneralProvider>(builder: (context, provider, child) {
               if (provider.upcommingMovieModel == null) {
-                return const Center(
-                  child: CircularProgressIndicator(),
+                return Shimmer.fromColors(
+                  baseColor: Colors.grey,
+                  highlightColor: Colors.blueGrey,
+                  child: ListView.builder(
+                      itemCount: 4,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          height: 220,
+                          alignment: Alignment.bottomLeft,
+                          margin: const EdgeInsets.only(
+                              bottom: 10, left: 20, right: 20, top: 10),
+                          decoration: const ShapeDecoration(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                          ),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                height: 220,
+                                width: size.width,
+                              ),
+                              Container(
+                                height: 220,
+                                alignment: Alignment.bottomLeft,
+                                decoration: ShapeDecoration(
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                  gradient: LinearGradient(
+                                    begin: const Alignment(0.00, -1.00),
+                                    end: const Alignment(0, 1),
+                                    colors: [
+                                      Colors.black.withOpacity(0),
+                                      Colors.black
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const Positioned(
+                                bottom: 20,
+                                left: 20,
+                                child: Text(
+                                  '',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.25,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
                 );
               } else {
                 return ListView.builder(
