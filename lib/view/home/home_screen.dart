@@ -6,6 +6,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ScaffoldWidget(child: SizedBox());
+    return const ScaffoldWidget(useAppbar: false, child: SizedBox());
   }
 }
