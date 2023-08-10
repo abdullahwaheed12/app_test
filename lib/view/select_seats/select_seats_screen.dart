@@ -1,4 +1,6 @@
+import 'package:App_Test/services/navigation_service.dart';
 import 'package:App_Test/utils/math_utils.dart';
+import 'package:App_Test/view/pay_to_reserved/pay_to_reserved.dart';
 import 'package:App_Test/view/select_seats/widgets/date_card.dart';
 import 'package:App_Test/view/select_seats/widgets/day_card.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:App_Test/widgets/app_widgets/scaffold_widget.dart';
 import 'package:App_Test/widgets/empty_space_widget.dart';
 
-class SelectSeats extends StatelessWidget {
-  const SelectSeats({super.key});
+class SelectSeatsScreen extends StatelessWidget {
+  const SelectSeatsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +19,7 @@ class SelectSeats extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            // width: 413,
-            height: 100,
+            height: 110,
             padding: const EdgeInsets.only(top: 50, left: 20),
             decoration: const ShapeDecoration(
               color: Colors.white,
@@ -26,12 +27,16 @@ class SelectSeats extends StatelessWidget {
                 side: BorderSide(width: 0.50, color: Color(0xFFEFEFEF)),
               ),
             ),
-            child: const Row(
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.arrow_back_ios),
-                Spacer(),
-                Column(
+                InkWell(
+                    onTap: () {
+                      NavigationService.pop();
+                    },
+                    child: const Icon(Icons.arrow_back_ios)),
+                const Spacer(),
+                const Column(
                   children: [
                     Text(
                       'The King’s Man',
@@ -55,7 +60,7 @@ class SelectSeats extends StatelessWidget {
                     )
                   ],
                 ),
-                Spacer()
+                const Spacer()
               ],
             ),
           ),
@@ -110,25 +115,30 @@ class SelectSeats extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                Container(
-                  width: size.width,
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFF61C3F2),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                InkWell(
+                  onTap: () {
+                    NavigationService.push(const PayToReservedScreen());
+                  },
+                  child: Container(
+                    width: size.width,
+                    height: 50,
+                    alignment: Alignment.center,
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFF61C3F2),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                  ),
-                  child: const Text(
-                    'Select Seats',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600,
-                      height: 1.43,
-                      letterSpacing: 0.20,
+                    child: const Text(
+                      'Select Seats',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                        height: 1.43,
+                        letterSpacing: 0.20,
+                      ),
                     ),
                   ),
                 ),

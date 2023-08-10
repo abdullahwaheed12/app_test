@@ -11,6 +11,8 @@ import 'package:App_Test/widgets/app_widgets/scaffold_widget.dart';
 import 'package:App_Test/widgets/empty_space_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../movie_detail/movie_detail_screen.dart';
+
 class SearchMovieScreen extends StatelessWidget {
   const SearchMovieScreen({super.key});
 
@@ -57,6 +59,7 @@ class SearchMovieScreen extends StatelessWidget {
                         provider.filterMovie(context);
                       },
                       scrollPadding: EdgeInsets.zero,
+                      style: const TextStyle(color: Colors.black),
                       decoration: const InputDecoration(
                           contentPadding: EdgeInsets.zero,
                           isDense: true,
@@ -178,60 +181,67 @@ class SearchMovieScreen extends StatelessWidget {
                         itemCount: provider.filterMovies.length,
                         itemBuilder: (context, index) {
                           var movie = provider.filterMovies[index];
-                          return Row(
-                            children: [
-                              Container(
-                                width: 130,
-                                height: 100,
-                                margin: const EdgeInsets.only(bottom: 20),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: CachedNetworkImage(
-                                    imageUrl:
-                                        'https://www.themoviedb.org/t/p/w1280${movie.poster_path}',
-                                    fit: BoxFit.fill,
-                                    progressIndicatorBuilder:
-                                        (context, url, downloadProgress) =>
-                                            Center(
-                                      child: CircularProgressIndicator(
-                                          value: downloadProgress.progress),
+                          return InkWell(
+                            onTap: () {
+                              NavigationService.push(MovieDetailScreen(
+                                movie: movie,
+                              ));
+                            },
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 130,
+                                  height: 100,
+                                  margin: const EdgeInsets.only(bottom: 20),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          'https://www.themoviedb.org/t/p/w1280${movie.poster_path}',
+                                      fit: BoxFit.fill,
+                                      progressIndicatorBuilder:
+                                          (context, url, downloadProgress) =>
+                                              Center(
+                                        child: CircularProgressIndicator(
+                                            value: downloadProgress.progress),
+                                      ),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
                                     ),
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(Icons.error),
                                   ),
                                 ),
-                              ),
-                              const DynamicHorizontalSpace(20),
-                              const Column(
-                                children: [
-                                  Text(
-                                    'Timless',
-                                    style: TextStyle(
-                                      color: Color(0xFF202C43),
-                                      fontSize: 16,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
+                                const DynamicHorizontalSpace(20),
+                                const Column(
+                                  children: [
+                                    Text(
+                                      'Timless',
+                                      style: TextStyle(
+                                        color: Color(0xFF202C43),
+                                        fontSize: 16,
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    'Fantasy',
-                                    style: TextStyle(
-                                      color: Color(0xFFDBDBDF),
-                                      fontSize: 12,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              const Spacer(),
-                              const Icon(
-                                Icons.more_horiz,
-                                color: skyColor,
-                              )
-                            ],
+                                    Text(
+                                      'Fantasy',
+                                      style: TextStyle(
+                                        color: Color(0xFFDBDBDF),
+                                        fontSize: 12,
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const Spacer(),
+                                const Icon(
+                                  Icons.more_horiz,
+                                  color: skyColor,
+                                )
+                              ],
+                            ),
                           );
                           // return Text(movie.title);
                         },

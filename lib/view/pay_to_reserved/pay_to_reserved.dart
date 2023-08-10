@@ -1,3 +1,4 @@
+import 'package:App_Test/services/navigation_service.dart';
 import 'package:App_Test/utils/app_toast.dart';
 import 'package:App_Test/view/pay_to_reserved/pay_provider.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class _PayToReservedScreenState extends State<PayToReservedScreen> {
             child: const SizedBox(),
           ),
           Container(
-            height: 100,
+            height: 110,
             padding: const EdgeInsets.only(top: 50, left: 20),
             decoration: const ShapeDecoration(
               color: Colors.white,
@@ -50,11 +51,15 @@ class _PayToReservedScreenState extends State<PayToReservedScreen> {
                 side: BorderSide(width: 0.50, color: Color(0xFFEFEFEF)),
               ),
             ),
-            child: const Row(
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.arrow_back_ios),
-                Expanded(
+                InkWell(
+                    onTap: () {
+                      NavigationService.pop();
+                    },
+                    child: const Icon(Icons.arrow_back_ios)),
+                const Expanded(
                   child: Center(
                     child: Padding(
                       padding: EdgeInsets.only(right: 24),

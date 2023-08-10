@@ -18,8 +18,8 @@ class Watch extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: 100,
-            padding: const EdgeInsets.only(top: 40),
+            height: 110,
+            padding: const EdgeInsets.only(top: 50),
             decoration: const ShapeDecoration(
               color: Colors.white,
               shape: RoundedRectangleBorder(
@@ -44,11 +44,7 @@ class Watch extends StatelessWidget {
                   const Spacer(),
                   InkWell(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SearchMovieScreen(),
-                            ));
+                        NavigationService.push(const SearchMovieScreen());
                       },
                       child: const Icon(Icons.search))
                 ],
@@ -74,7 +70,7 @@ class Watch extends StatelessWidget {
                           ));
                         },
                         child: Container(
-                          height: 200,
+                          height: 220,
                           alignment: Alignment.bottomLeft,
                           margin: const EdgeInsets.only(
                               bottom: 10, left: 20, right: 20, top: 10),
@@ -88,7 +84,7 @@ class Watch extends StatelessWidget {
                           child: Stack(
                             children: [
                               SizedBox(
-                                height: 200,
+                                height: 220,
                                 width: size.width,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
@@ -108,7 +104,7 @@ class Watch extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                height: 200,
+                                height: 220,
                                 alignment: Alignment.bottomLeft,
                                 decoration: ShapeDecoration(
                                   shape: const RoundedRectangleBorder(

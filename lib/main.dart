@@ -1,10 +1,10 @@
+import 'package:App_Test/view/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:App_Test/theme/native_theme.dart';
 import 'package:App_Test/widgets/app_widgets/console_error_widget.dart';
 import 'package:provider/provider.dart';
 
 import 'helpers/shared_helpers.dart';
-import 'view/pay_to_reserved/pay_to_reserved.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'App Test',
         theme: NativeThemeData().nativeLightTheme(),
-        home: const PayToReservedScreen(),
+        home: const Dashboard(),
       ),
     );
   }

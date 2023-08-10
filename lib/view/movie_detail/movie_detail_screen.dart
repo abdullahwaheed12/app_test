@@ -1,3 +1,4 @@
+import 'package:App_Test/view/select_seats/select_seats_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:App_Test/controller/general_provider.dart';
@@ -61,7 +62,7 @@ class MovieDetailScreen extends StatelessWidget {
                   height: size.height * 0.6,
                   child: Column(
                     children: [
-                      const DynamicVerticalSpace(40),
+                      const DynamicVerticalSpace(50),
                       Row(
                         children: [
                           const DynamicHorizontalSpace(20),
@@ -98,23 +99,28 @@ class MovieDetailScreen extends StatelessWidget {
                         ),
                       ),
                       const DynamicVerticalSpace(15),
-                      Container(
-                        width: 243,
-                        height: 50,
-                        alignment: Alignment.center,
-                        decoration: ShapeDecoration(
-                          color: const Color(0xFF61C3F2),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                      InkWell(
+                        onTap: () {
+                          NavigationService.push(const SelectSeatsScreen());
+                        },
+                        child: Container(
+                          width: 243,
+                          height: 50,
+                          alignment: Alignment.center,
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFF61C3F2),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                           ),
-                        ),
-                        child: const Text(
-                          'Get Tickets',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w600,
+                          child: const Text(
+                            'Get Tickets',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ),
