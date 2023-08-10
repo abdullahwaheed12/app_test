@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
+import '../view/pay_to_reserved/pay_provider.dart';
 import '../view/search_movie/serach_provider.dart';
 
 class SharedHelpers {
@@ -22,6 +23,7 @@ class SharedHelpers {
   final List<SingleChildWidget> controllers = [
     ChangeNotifierProvider(create: (context) => GeneralProvider()),
     ChangeNotifierProvider(create: (context) => SearchMovieProvider()),
+    ChangeNotifierProvider(create: (context) => PayProvider()),
     // ChangeNotifierProvider(
     //   create: (context) => UserController(),
     // ),

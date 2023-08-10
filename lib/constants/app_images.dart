@@ -20,7 +20,7 @@ class AppImages {
   static String seatsBookingPNG = '${pngBase}seats_booking.png';
 
   //svg
-  static String svgBase = '$imagesPath/svg/';
+  static String svgBase = '${imagesPath}svg/';
   static String screenSVG = '${svgBase}screen.svg';
   static String seatSVG = '${svgBase}Seat.svg';
 }
