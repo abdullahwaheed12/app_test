@@ -42,7 +42,6 @@ class _PayToReservedScreenState extends State<PayToReservedScreen> {
             child: const SizedBox(),
           ),
           Container(
-            // width: 413,
             height: 100,
             padding: const EdgeInsets.only(top: 50, left: 20),
             decoration: const ShapeDecoration(
@@ -55,59 +54,64 @@ class _PayToReservedScreenState extends State<PayToReservedScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Icon(Icons.arrow_back_ios),
-                Spacer(),
-                Column(
-                  children: [
-                    Text(
-                      'The King’s Man',
-                      style: TextStyle(
-                        color: Color(0xFF202C43),
-                        fontSize: 16,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
-                        height: 1.25,
-                      ),
-                    ),
-                    DynamicVerticalSpace(6),
-                    Text.rich(
-                      TextSpan(
+                Expanded(
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 24),
+                      child: Column(
                         children: [
-                          TextSpan(
-                            text: 'March 5, 2021  ',
+                          Text(
+                            'The King’s Man',
                             style: TextStyle(
-                              color: Color(0xFF61C3F2),
-                              fontSize: 12,
+                              color: Color(0xFF202C43),
+                              fontSize: 16,
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w500,
                               height: 1.25,
                             ),
                           ),
-                          TextSpan(
-                            text: 'I',
-                            style: TextStyle(
-                              color: Color(0x7F61C3F2),
-                              fontSize: 12,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w500,
-                              height: 1.25,
+                          DynamicVerticalSpace(6),
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'March 5, 2021  ',
+                                  style: TextStyle(
+                                    color: Color(0xFF61C3F2),
+                                    fontSize: 12,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.25,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: 'I',
+                                  style: TextStyle(
+                                    color: Color(0x7F61C3F2),
+                                    fontSize: 12,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.25,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '  12:30 hall 1',
+                                  style: TextStyle(
+                                    color: Color(0xFF61C3F2),
+                                    fontSize: 12,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.25,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          TextSpan(
-                            text: '  12:30 hall 1',
-                            style: TextStyle(
-                              color: Color(0xFF61C3F2),
-                              fontSize: 12,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w500,
-                              height: 1.25,
-                            ),
-                          ),
+                          )
                         ],
                       ),
-                    )
-                  ],
+                    ),
+                  ),
                 ),
-                Spacer()
               ],
             ),
           ),
@@ -142,6 +146,7 @@ class _PayToReservedScreenState extends State<PayToReservedScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
+                      const DynamicHorizontalSpace(6),
                       Consumer<PayProvider>(
                           builder: (context, provider, child) {
                         return Text(
@@ -156,7 +161,15 @@ class _PayToReservedScreenState extends State<PayToReservedScreen> {
                           ),
                         );
                       }),
-                      const DynamicHorizontalSpace(55),
+                      const DynamicHorizontalSpace(26),
+                      const SelectSeatCard(
+                        0,
+                        color: Colors.white,
+                      ),
+                      const SelectSeatCard(
+                        1,
+                        color: Colors.white,
+                      ),
                       for (int i = 0; i < 2; i++) SelectSeatCard(i),
                       const DynamicHorizontalSpace(10),
                       for (int i = 2; i < 16; i++) SelectSeatCard(i),
@@ -654,11 +667,49 @@ class SeatBookingBackSeats extends StatelessWidget {
 }
 
 class SelectSeatCard extends StatelessWidget {
-  const SelectSeatCard(this.seatNo, {super.key});
+  const SelectSeatCard(this.seatNo, {super.key, this.color});
   final int seatNo;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Consumer<PayProvider>(builder: (context, provider, child) {
+      if (seatNo < 10 || seatNo < 20) {
+        return InkWell(
+          onTap: () {
+            AppToast.showToast(message: 'Only for Vip');
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: SizedBox(
+              width: provider.width,
+              height: provider.width,
+              child: SvgPicture.asset(
+                AppImages.seatSVG,
+                color: const Color(0xFF564CA3),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+        );
+      }
+      if (seatNo % 2 == 0) {
+        return InkWell(
+          onTap: () {
+            AppToast.showToast(message: 'Not Availible');
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: SizedBox(
+              width: provider.width,
+              height: provider.width,
+              child: SvgPicture.asset(
+                AppImages.seatSVG,
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+        );
+      }
       return InkWell(
         onTap: () {
           if (provider.selectingSeat.contains(seatNo)) {
@@ -674,9 +725,10 @@ class SelectSeatCard extends StatelessWidget {
             height: provider.width,
             child: SvgPicture.asset(
               AppImages.seatSVG,
-              color: provider.selectingSeat.contains(seatNo)
-                  ? const Color(0xFFCD9D0F)
-                  : null,
+              color: color ??
+                  (provider.selectingSeat.contains(seatNo)
+                      ? const Color(0xFFCD9D0F)
+                      : const Color(0xFF61C3F2)),
               fit: BoxFit.fill,
             ),
           ),
