@@ -1,26 +1,34 @@
-import 'package:App_Test/services/navigation_service.dart';
-import 'package:App_Test/utils/math_utils.dart';
-import 'package:App_Test/view/pay_to_reserved/pay_to_reserved.dart';
-import 'package:App_Test/view/select_seats/widgets/date_card.dart';
-import 'package:App_Test/view/select_seats/widgets/day_card.dart';
+import 'package:app_test/view/select_date/provider/select_date_provider.dart';
+import 'package:app_test/view/select_date/widgets/date_card.dart';
+import 'package:app_test/view/select_date/widgets/day_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'package:App_Test/widgets/app_widgets/scaffold_widget.dart';
-import 'package:App_Test/widgets/empty_space_widget.dart';
+import '../../controller/general_provider.dart';
+import '../../model/upcomming_movie.dart';
+import '../../services/navigation_service.dart';
+import '../../widgets/empty_space_widget.dart';
+import '../pay_to_reserved/pay_to_reserved.dart';
 
-class SelectSeatsScreen extends StatelessWidget {
-  const SelectSeatsScreen({super.key});
+class SelectDatePortraitBody extends StatelessWidget {
+  const SelectDatePortraitBody({
+    Key? key,
+    required this.movie,
+  }) : super(key: key);
+  final MovieModel movie;
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldWidget(
-      useAppbar: false,
-      child: Column(
+    var generalProvider = Provider.of<GeneralProvider>(context, listen: false);
+    var size = MediaQuery.of(context).size;
+    return Consumer<SelectDateProvider>(builder: (context, provider, child) {
+      return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 110,
-            padding: const EdgeInsets.only(top: 50, left: 20),
+            height: 70,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.only(left: 20, right: 20),
             decoration: const ShapeDecoration(
               color: Colors.white,
               shape: RoundedRectangleBorder(
@@ -28,7 +36,6 @@ class SelectSeatsScreen extends StatelessWidget {
               ),
             ),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 InkWell(
                     onTap: () {
@@ -36,11 +43,12 @@ class SelectSeatsScreen extends StatelessWidget {
                     },
                     child: const Icon(Icons.arrow_back_ios)),
                 const Spacer(),
-                const Column(
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'The King’s Man',
-                      style: TextStyle(
+                      movie.originalTitle,
+                      style: const TextStyle(
                         color: Color(0xFF202C43),
                         fontSize: 16,
                         fontFamily: 'Poppins',
@@ -49,8 +57,8 @@ class SelectSeatsScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'In theaters december 22, 2021',
-                      style: TextStyle(
+                      'In theaters ${generalProvider.formatDate(movie.releaseDate)}',
+                      style: const TextStyle(
                         color: Color(0xFF61C3F2),
                         fontSize: 12,
                         fontFamily: 'Poppins',
@@ -60,7 +68,11 @@ class SelectSeatsScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                const Spacer()
+                const Spacer(),
+                const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.transparent,
+                )
               ],
             ),
           ),
@@ -73,51 +85,40 @@ class SelectSeatsScreen extends StatelessWidget {
               children: [
                 const Text('Date'),
                 const DynamicVerticalSpace(14),
-                const SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      SelectSeatsDateCard(
-                        text: '5 Mar',
-                        isSelected: true,
-                      ),
-                      SelectSeatsDateCard(
-                        text: '6 Mar',
-                        isSelected: false,
-                      ),
-                      SelectSeatsDateCard(
-                        text: '7 Mar',
-                        isSelected: false,
-                      ),
-                      SelectSeatsDateCard(
-                        text: '8 Mar',
-                        isSelected: false,
-                      ),
-                      SelectSeatsDateCard(
-                        text: '9 Mar',
-                        isSelected: false,
-                      ),
-                    ],
+                SizedBox(
+                  height: 30,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 30,
+                    itemBuilder: (context, index) {
+                      return SelectSeatsDateCard(
+                        text: '${index + 1} Mar',
+                        isSelected: provider.selectedDate == index + 1,
+                        index: index,
+                      );
+                    },
                   ),
                 ),
                 const DynamicVerticalSpace(45),
-                const SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      //1
-                      SelectSeatDayCard(isSelected: true),
-                      DynamicHorizontalSpace(10),
-                      SelectSeatDayCard(
-                        isSelected: false,
-                      ),
-                    ],
+                SizedBox(
+                  height: 220,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return SelectSeatDayCard(
+                        isSelected: provider.selectCenema == index + 1,
+                        index: index + 1,
+                      );
+                    },
                   ),
                 ),
                 const Spacer(),
                 InkWell(
                   onTap: () {
-                    NavigationService.push(const PayToReservedScreen());
+                    NavigationService.push(PayToReservedScreen(
+                      movie: movie,
+                    ));
                   },
                   child: Container(
                     width: size.width,
@@ -147,7 +148,7 @@ class SelectSeatsScreen extends StatelessWidget {
             ),
           )),
         ],
-      ),
-    );
+      );
+    });
   }
 }

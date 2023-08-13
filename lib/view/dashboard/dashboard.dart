@@ -1,11 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:App_Test/controller/general_provider.dart';
+import 'package:app_test/controller/general_provider.dart';
 
-import 'package:App_Test/utils/math_utils.dart';
-import 'package:App_Test/view/home/home_screen.dart';
-import 'package:App_Test/view/watch/watch.dart';
+import 'package:app_test/view/home/home_screen.dart';
+import 'package:app_test/view/watch/watch.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/app_images.dart';
@@ -50,6 +49,7 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
@@ -66,9 +66,9 @@ class _DashboardState extends State<Dashboard> {
                 shape: RoundedRectangleBorder(
                   borderRadius: Platform.isAndroid
                       ? const BorderRadius.only(
-                          topLeft: Radius.circular(27),
-                          topRight: Radius.circular(27))
-                      : BorderRadius.circular(27),
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30))
+                      : BorderRadius.circular(30),
                 ),
               ),
               child: Row(

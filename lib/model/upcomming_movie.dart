@@ -6,29 +6,29 @@ class UpcommingMovieModel {
   final Dates dates;
   final int page;
   final List<MovieModel> results;
-  final int total_pages;
-  final int total_results;
+  final int totalPages;
+  final int totalResults;
   UpcommingMovieModel({
     required this.dates,
     required this.page,
     required this.results,
-    required this.total_pages,
-    required this.total_results,
+    required this.totalPages,
+    required this.totalResults,
   });
 
   UpcommingMovieModel copyWith({
     Dates? dates,
     int? page,
     List<MovieModel>? results,
-    int? total_pages,
-    int? total_results,
+    int? totalPages,
+    int? totalResults,
   }) {
     return UpcommingMovieModel(
       dates: dates ?? this.dates,
       page: page ?? this.page,
       results: results ?? this.results,
-      total_pages: total_pages ?? this.total_pages,
-      total_results: total_results ?? this.total_results,
+      totalPages: totalPages ?? this.totalPages,
+      totalResults: totalResults ?? this.totalResults,
     );
   }
 
@@ -38,8 +38,8 @@ class UpcommingMovieModel {
     result.addAll({'dates': dates.toMap()});
     result.addAll({'page': page});
     result.addAll({'results': results.map((x) => x.toMap()).toList()});
-    result.addAll({'total_pages': total_pages});
-    result.addAll({'total_results': total_results});
+    result.addAll({'total_pages': totalPages});
+    result.addAll({'total_results': totalResults});
 
     return result;
   }
@@ -50,8 +50,8 @@ class UpcommingMovieModel {
       page: map['page']?.toInt() ?? 0,
       results: List<MovieModel>.from(
           map['results']?.map((x) => MovieModel.fromMap(x))),
-      total_pages: map['total_pages']?.toInt() ?? 0,
-      total_results: map['total_results']?.toInt() ?? 0,
+      totalPages: map['total_pages']?.toInt() ?? 0,
+      totalResults: map['total_results']?.toInt() ?? 0,
     );
   }
 
@@ -62,7 +62,7 @@ class UpcommingMovieModel {
 
   @override
   String toString() {
-    return 'UpcommingMovieModel(dates: $dates, page: $page, results: $results, total_pages: $total_pages, total_results: $total_results)';
+    return 'UpcommingMovieModel(dates: $dates, page: $page, results: $results, total_pages: $totalPages, total_results: $totalResults)';
   }
 
   @override
@@ -73,8 +73,8 @@ class UpcommingMovieModel {
         other.dates == dates &&
         other.page == page &&
         listEquals(other.results, results) &&
-        other.total_pages == total_pages &&
-        other.total_results == total_results;
+        other.totalPages == totalPages &&
+        other.totalResults == totalResults;
   }
 
   @override
@@ -82,8 +82,8 @@ class UpcommingMovieModel {
     return dates.hashCode ^
         page.hashCode ^
         results.hashCode ^
-        total_pages.hashCode ^
-        total_results.hashCode;
+        totalPages.hashCode ^
+        totalResults.hashCode;
   }
 }
 
@@ -143,67 +143,67 @@ class Dates {
 
 class MovieModel {
   final bool adult;
-  final String backdrop_path;
-  final List<int> genre_ids;
+  final String backdropPath;
+  final List<int> genreIds;
   final int id;
-  final String original_language;
-  final String original_title;
+  final String originalLanguage;
+  final String originalTitle;
   final String overview;
   final double popularity;
-  final String poster_path;
-  final String release_date;
+  final String posterPath;
+  final String releaseDate;
   final String title;
   final bool video;
-  final double vote_average;
-  final int vote_count;
+  final double voteAverage;
+  final int voteCount;
   MovieModel({
     required this.adult,
-    required this.backdrop_path,
-    required this.genre_ids,
+    required this.backdropPath,
+    required this.genreIds,
     required this.id,
-    required this.original_language,
-    required this.original_title,
+    required this.originalLanguage,
+    required this.originalTitle,
     required this.overview,
     required this.popularity,
-    required this.poster_path,
-    required this.release_date,
+    required this.posterPath,
+    required this.releaseDate,
     required this.title,
     required this.video,
-    required this.vote_average,
-    required this.vote_count,
+    required this.voteAverage,
+    required this.voteCount,
   });
 
   MovieModel copyWith({
     bool? adult,
-    String? backdrop_path,
-    List<int>? genre_ids,
+    String? backdropPath,
+    List<int>? genreIds,
     int? id,
-    String? original_language,
-    String? original_title,
+    String? originalLanguage,
+    String? originalTitle,
     String? overview,
     double? popularity,
-    String? poster_path,
-    String? release_date,
+    String? posterPath,
+    String? releaseDate,
     String? title,
     bool? video,
-    double? vote_average,
-    int? vote_count,
+    double? voteAverage,
+    int? voteCount,
   }) {
     return MovieModel(
       adult: adult ?? this.adult,
-      backdrop_path: backdrop_path ?? this.backdrop_path,
-      genre_ids: genre_ids ?? this.genre_ids,
+      backdropPath: backdropPath ?? this.backdropPath,
+      genreIds: genreIds ?? this.genreIds,
       id: id ?? this.id,
-      original_language: original_language ?? this.original_language,
-      original_title: original_title ?? this.original_title,
+      originalLanguage: originalLanguage ?? this.originalLanguage,
+      originalTitle: originalTitle ?? this.originalTitle,
       overview: overview ?? this.overview,
       popularity: popularity ?? this.popularity,
-      poster_path: poster_path ?? this.poster_path,
-      release_date: release_date ?? this.release_date,
+      posterPath: posterPath ?? this.posterPath,
+      releaseDate: releaseDate ?? this.releaseDate,
       title: title ?? this.title,
       video: video ?? this.video,
-      vote_average: vote_average ?? this.vote_average,
-      vote_count: vote_count ?? this.vote_count,
+      voteAverage: voteAverage ?? this.voteAverage,
+      voteCount: voteCount ?? this.voteCount,
     );
   }
 
@@ -211,19 +211,19 @@ class MovieModel {
     final result = <String, dynamic>{};
 
     result.addAll({'adult': adult});
-    result.addAll({'backdrop_path': backdrop_path});
-    result.addAll({'genre_ids': genre_ids});
+    result.addAll({'backdrop_path': backdropPath});
+    result.addAll({'genre_ids': genreIds});
     result.addAll({'id': id});
-    result.addAll({'original_language': original_language});
-    result.addAll({'original_title': original_title});
+    result.addAll({'original_language': originalLanguage});
+    result.addAll({'original_title': originalTitle});
     result.addAll({'overview': overview});
     result.addAll({'popularity': popularity});
-    result.addAll({'poster_path': poster_path});
-    result.addAll({'release_date': release_date});
+    result.addAll({'poster_path': posterPath});
+    result.addAll({'release_date': releaseDate});
     result.addAll({'title': title});
     result.addAll({'video': video});
-    result.addAll({'vote_average': vote_average});
-    result.addAll({'vote_count': vote_count});
+    result.addAll({'vote_average': voteAverage});
+    result.addAll({'vote_count': voteCount});
 
     return result;
   }
@@ -231,19 +231,19 @@ class MovieModel {
   factory MovieModel.fromMap(Map<String, dynamic> map) {
     return MovieModel(
       adult: map['adult'] ?? false,
-      backdrop_path: map['backdrop_path'] ?? '',
-      genre_ids: List<int>.from(map['genre_ids']),
+      backdropPath: map['backdrop_path'] ?? '',
+      genreIds: List<int>.from(map['genre_ids']),
       id: map['id']?.toInt() ?? 0,
-      original_language: map['original_language'] ?? '',
-      original_title: map['original_title'] ?? '',
+      originalLanguage: map['original_language'] ?? '',
+      originalTitle: map['original_title'] ?? '',
       overview: map['overview'] ?? '',
       popularity: map['popularity']?.toDouble() ?? 0.0,
-      poster_path: map['poster_path'] ?? '',
-      release_date: map['release_date'] ?? '',
+      posterPath: map['poster_path'] ?? '',
+      releaseDate: map['release_date'] ?? '',
       title: map['title'] ?? '',
       video: map['video'] ?? false,
-      vote_average: map['vote_average']?.toDouble() ?? 0.0,
-      vote_count: map['vote_count']?.toInt() ?? 0,
+      voteAverage: map['vote_average']?.toDouble() ?? 0.0,
+      voteCount: map['vote_count']?.toInt() ?? 0,
     );
   }
 
@@ -254,7 +254,7 @@ class MovieModel {
 
   @override
   String toString() {
-    return 'Result(adult: $adult, backdrop_path: $backdrop_path, genre_ids: $genre_ids, id: $id, original_language: $original_language, original_title: $original_title, overview: $overview, popularity: $popularity, poster_path: $poster_path, release_date: $release_date, title: $title, video: $video, vote_average: $vote_average, vote_count: $vote_count)';
+    return 'Result(adult: $adult, backdrop_path: $backdropPath, genre_ids: $genreIds, id: $id, original_language: $originalLanguage, original_title: $originalTitle, overview: $overview, popularity: $popularity, poster_path: $posterPath, release_date: $releaseDate, title: $title, video: $video, vote_average: $voteAverage, vote_count: $voteCount)';
   }
 
   @override
@@ -263,36 +263,36 @@ class MovieModel {
 
     return other is MovieModel &&
         other.adult == adult &&
-        other.backdrop_path == backdrop_path &&
-        listEquals(other.genre_ids, genre_ids) &&
+        other.backdropPath == backdropPath &&
+        listEquals(other.genreIds, genreIds) &&
         other.id == id &&
-        other.original_language == original_language &&
-        other.original_title == original_title &&
+        other.originalLanguage == originalLanguage &&
+        other.originalTitle == originalTitle &&
         other.overview == overview &&
         other.popularity == popularity &&
-        other.poster_path == poster_path &&
-        other.release_date == release_date &&
+        other.posterPath == posterPath &&
+        other.releaseDate == releaseDate &&
         other.title == title &&
         other.video == video &&
-        other.vote_average == vote_average &&
-        other.vote_count == vote_count;
+        other.voteAverage == voteAverage &&
+        other.voteCount == voteCount;
   }
 
   @override
   int get hashCode {
     return adult.hashCode ^
-        backdrop_path.hashCode ^
-        genre_ids.hashCode ^
+        backdropPath.hashCode ^
+        genreIds.hashCode ^
         id.hashCode ^
-        original_language.hashCode ^
-        original_title.hashCode ^
+        originalLanguage.hashCode ^
+        originalTitle.hashCode ^
         overview.hashCode ^
         popularity.hashCode ^
-        poster_path.hashCode ^
-        release_date.hashCode ^
+        posterPath.hashCode ^
+        releaseDate.hashCode ^
         title.hashCode ^
         video.hashCode ^
-        vote_average.hashCode ^
-        vote_count.hashCode;
+        voteAverage.hashCode ^
+        voteCount.hashCode;
   }
 }

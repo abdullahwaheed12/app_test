@@ -1,4 +1,4 @@
-import 'package:App_Test/services/navigation_service.dart';
+import 'package:app_test/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 

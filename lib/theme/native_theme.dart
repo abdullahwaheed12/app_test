@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:App_Test/constants/app_fonts.dart';
+import 'package:app_test/constants/app_fonts.dart';
 
 class NativeThemeData {
   ThemeData nativeLightTheme() {
@@ -14,6 +14,7 @@ class NativeThemeData {
         ),
         // useMaterial3: true,
         scaffoldBackgroundColor: const Color(0xFFF6F6FA),
+        primaryColor: const Color(0xFFF6F6FA),
         inputDecorationTheme: const InputDecorationTheme(
             labelStyle: TextStyle(color: Colors.black),
             counterStyle: TextStyle(color: Colors.black)),

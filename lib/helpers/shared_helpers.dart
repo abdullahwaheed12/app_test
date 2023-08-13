@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:App_Test/controller/general_provider.dart';
+import 'package:app_test/controller/general_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-import '../view/pay_to_reserved/pay_provider.dart';
-import '../view/search_movie/serach_provider.dart';
+import '../view/pay_to_reserved/provider/pay_provider.dart';
+import '../view/search_movie/provider/serach_provider.dart';
+import '../view/select_date/provider/select_date_provider.dart';
 
 class SharedHelpers {
   static Future<void> initilizeApp() async {
@@ -21,6 +22,7 @@ class SharedHelpers {
     ChangeNotifierProvider(create: (context) => GeneralProvider()),
     ChangeNotifierProvider(create: (context) => SearchMovieProvider()),
     ChangeNotifierProvider(create: (context) => PayProvider()),
+    ChangeNotifierProvider(create: (context) => SelectDateProvider()),
     // ChangeNotifierProvider(
     //   create: (context) => UserController(),
     // ),

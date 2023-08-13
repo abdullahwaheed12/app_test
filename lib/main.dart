@@ -1,7 +1,8 @@
-import 'package:App_Test/view/dashboard/dashboard.dart';
+import 'package:app_test/view/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
-import 'package:App_Test/theme/native_theme.dart';
-import 'package:App_Test/widgets/app_widgets/console_error_widget.dart';
+import 'package:app_test/theme/native_theme.dart';
+import 'package:app_test/widgets/app_widgets/console_error_widget.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'helpers/shared_helpers.dart';
@@ -26,7 +27,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // FlutterStatusbarcolor.setStatusBarColor(Colors.grey);
-
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.white, //or set color with: Color(0xFF0000FF)
+    ));
     return MultiProvider(
       providers: SharedHelpers().controllers,
       child: MaterialApp(

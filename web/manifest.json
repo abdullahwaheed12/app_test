@@ -1,6 +1,6 @@
 {
-  "name": "App_Test",
-  "short_name": "App_Test",
+  "name": "app_test",
+  "short_name": "app_test",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",

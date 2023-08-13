@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:App_Test/utils/app_key.dart';
+import 'package:app_test/utils/app_key.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:App_Test/model/upcomming_movie.dart';
+import 'package:app_test/model/upcomming_movie.dart';
 
 class GeneralProvider extends ChangeNotifier {
   UpcommingMovieModel? upcommingMovieModel;
@@ -21,11 +22,17 @@ class GeneralProvider extends ChangeNotifier {
       var response = request.body;
 
       upcommingMovieModel = UpcommingMovieModel.fromJson(response);
-      print(response);
+      if (kDebugMode) {
+        print(response);
+      }
       log('------------upcommingMovieModel-----------------');
-      print(upcommingMovieModel);
+      if (kDebugMode) {
+        print(upcommingMovieModel);
+      }
     } else {
-      print(request.reasonPhrase);
+      if (kDebugMode) {
+        print(request.reasonPhrase);
+      }
     }
     notifyListeners();
   }
@@ -126,11 +133,11 @@ class GeneralProvider extends ChangeNotifier {
   }
 
   Color getGenreColor(int genreId) {
-    if (genreId == 28) {
+    if (genreId >= 28 && genreId <= 53) {
       return const Color(0xFF15D2BB);
-    } else if (genreId == 53) {
+    } else if (genreId >= 53 && genreId <= 878) {
       return const Color(0xFFE26CA5);
-    } else if (genreId == 878) {
+    } else if (genreId >= 878 && genreId <= 10770) {
       return const Color(0xFF564CA3);
     } else {
       return const Color(0xFFCD9D0F);
